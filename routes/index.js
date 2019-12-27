@@ -36,18 +36,18 @@ router.route('/upload')
         // const model = "c0c0ac362b03416da06ab3fa36fb58e3";
         await clarifai.models.predict("c0c0ac362b03416da06ab3fa36fb58e3", `${url}`)
             .then(response => {
-                // let age = response['outputs'][0]['data']['regions'][0]['data']['face']['age_appearance']['concepts'][0];
-                // let age1 = response['outputs'][0]['data']['regions'][0]['data']['face']['age_appearance']['concepts'][1];
-                // let nameAge = age.name;
-                // let valueAge = age.value.toFixed(3);
-                // let nameAge1 = age1.name;
-                // let valueAge1 = age1.value.toFixed(3);
-                // let gender_fem = response['outputs'][0]['data']['regions'][0]['data']['face']['gender_appearance']['concepts'][0];
-                // let gender_mas = response['outputs'][0]['data']['regions'][0]['data']['face']['gender_appearance']['concepts'][1];
-                // let genderName = gender_fem.name;
-                // let genderValue = gender_fem.value.toFixed(3);
-                // let genderName1 = gender_mas.name;
-                // let genderValue1 = gender_mas.value.toFixed(3);
+                let age = response['outputs'][0]['data']['regions'][0]['data']['face']['age_appearance']['concepts'][0];
+                let age1 = response['outputs'][0]['data']['regions'][0]['data']['face']['age_appearance']['concepts'][1];
+                let nameAge = age.name;
+                let valueAge = age.value.toFixed(3);
+                let nameAge1 = age1.name;
+                let valueAge1 = age1.value.toFixed(3);
+                let gender_fem = response['outputs'][0]['data']['regions'][0]['data']['face']['gender_appearance']['concepts'][0];
+                let gender_mas = response['outputs'][0]['data']['regions'][0]['data']['face']['gender_appearance']['concepts'][1];
+                let genderName = gender_fem.name;
+                let genderValue = gender_fem.value.toFixed(3);
+                let genderName1 = gender_mas.name;
+                let genderValue1 = gender_mas.value.toFixed(3);
 
                 console.log(response['outputs'][0]['data']['regions'][0]['data']['face']);
                 res.json({status: response['outputs'][0]['data']['regions'][0]['data']['face']});
