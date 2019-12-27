@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/application.css">
+<!--    <link href="/style.css" rel="stylesheet" />-->
+    <title>Image Recognition</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Image Recognition</h1>
+<div class="container-url">
+
+</div>
+<div class="container">
+    <form action="/upload" method="post" id="url-input" class="url-form">
+        <label for="url" class="url-button">Url:</label>
+        <input id="url" type="text" name="url" placeholder="https://"/><br>
+        <label for="photo" class="label-button">Upload Image:</label>
+        <input id="photo" type="file" name="photo" /><br>
+        <label for="submit" class="label-button"></label>
+        <input id="submit" type="submit" name="submit" /><br>
+    </form>
+</div>
+<div class="max-w-700 center">
+    {{{body}}}
+</div>
+</body>
+</html>

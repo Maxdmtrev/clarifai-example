@@ -1,0 +1,28 @@
+
+<div class="container-category">
+    <form id="category-input" class="url-form" action="/upload" method="post">
+        <label for="general" class="label-button">General</label>
+        <input id="general" type="checkbox" name="general" />
+        <label for="general" class="label-button">Demographic</label>
+        <input id="demographic" type="checkbox" name="demographic" />
+        <label for="general" class="label-button">Celebrity</label>
+        <input id="celebrity" type="checkbox" name="celebrity" />
+    </form>
+</div>
+<div id="predictions" class="conceptBox">
+        <img id="img_preview1" src='{{url}}' width="600px" height="800px"/>
+        <br/>
+    </div>
+<div class="container-result">
+    <ul class="outputs">
+        {{#each result}}
+        <li class="result-input">
+            <span class="-result-name">Concept: {{name}}</span><br>
+            <span class="result-value">probability: {{value}}</span>
+        </li><br>
+        {{/each}}
+    </ul>
+</div>
+
+
+<!--<script src="/js/application.js" defer></script>-->
