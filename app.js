@@ -8,9 +8,9 @@ const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
 const app = express();
-const clarifai = new Clarifai.App({  apiKey: 'd6dd707fbdd9404e869be038368df4db'});
+// const clarifai = new Clarifai.App({  apiKey: 'd6dd707fbdd9404e869be038368df4db'});
 const port = 3000;
-const upload = multer();
+// const upload = multer();
 
 
 

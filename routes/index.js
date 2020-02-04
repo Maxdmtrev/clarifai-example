@@ -1,3 +1,4 @@
+
 const express = require("express");
 const router = express.Router();
 const Clarifai = require("clarifai");
@@ -11,30 +12,25 @@ router.route('/')
         res.render('index');
     });
 
-// router.route('/upload')
-//     .post( async (req, res) => {
-//         const url = req.body.url;
-//         await clarifai.models.predict(Clarifai.GENERAL_MODEL, `${url}`)
-//         .then(response => {
-//             let result = response['outputs'][0]['data']['concepts'];
-//             let name = result.map(e => e.name);
-//             let value = result.map(e => e.value.toFixed(3));
-//             console.log(name);
-//             console.log(value);
-//             // res.json({name: name, value: value});
-//             console.log(response['outputs'][0]['data']['concepts']);
-//             res.render('index', { result, name, value, url} )
-//         })
-//         .catch(err => {
-//             console.log(err);
-//         });
-//     });
-
 router.route('/upload')
     .post( async (req, res) => {
         const url = req.body.url;
-        // const model = "c0c0ac362b03416da06ab3fa36fb58e3";
-        await clarifai.models.predict("c0c0ac362b03416da06ab3fa36fb58e3", `${url}`)
+        const inputModel = req.body.inputGroup;
+        console.log(req.body);
+
+        if(inputModel === 'general') {
+        await clarifai.models.predict(Clarifai.GENERAL_MODEL, `${url}`)
+        .then(response => {
+            let result = response['outputs'][0]['data']['concepts'];
+            let name = result.map(e => e.name);
+            let newRes = result.map(e => e.value.toFixed(3));
+            res.render('index', { result, name, newRes, url} )
+        })
+        .catch(err => {
+            console.log(err);
+        });
+      } if(inputModel === 'demograph') {
+                await clarifai.models.predict("c0c0ac362b03416da06ab3fa36fb58e3", `${url}`)
             .then(response => {
                 let age = response['outputs'][0]['data']['regions'][0]['data']['face']['age_appearance']['concepts'][0];
                 let age1 = response['outputs'][0]['data']['regions'][0]['data']['face']['age_appearance']['concepts'][1];
@@ -48,25 +44,17 @@ router.route('/upload')
                 let genderValue = gender_fem.value.toFixed(3);
                 let genderName1 = gender_mas.name;
                 let genderValue1 = gender_mas.value.toFixed(3);
-
-                console.log(response['outputs'][0]['data']['regions'][0]['data']['face']);
-                res.json({status: response['outputs'][0]['data']['regions'][0]['data']['face']});
-
-                // res.json({name: age});
-
-                ///////// In this data (age_appearance, gender_appearance, multicultural_appearance)
-                // console.log(response['outputs'][0]['data']['regions'][0]['data']);
-
-
-
-                // res.render('index', { result, name, value, url} )
-
+                let result = response['outputs'][0]['data']['regions'][0]['data']['face']['multicultural_appearance']['concepts'];
+                let nameMulti = result.map(e => e.name);
+                let valueMulti = result.map(e => e.value.toFixed(3));
                  res.render('demography', {nameAge, valueAge, nameAge1, valueAge1,
-                                           genderName, genderName1, genderValue, genderValue1, url} );
+                                           genderName, genderName1, genderValue, genderValue1, result, nameMulti, valueMulti, url} )
             })
             .catch(err => {
                 console.log(err);
             });
+        }
     });
+
 
 module.exports = router;
