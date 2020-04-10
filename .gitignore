@@ -59,6 +59,7 @@ jspm_packages/
 sessions/
 # TypeScript v1 declaration files
 typings/
+.DS_Store
 
 # Optional npm cache directory
 .npm
