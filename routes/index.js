@@ -34,19 +34,19 @@ router.route('/upload')
 
               const age = data[0];
               const ageValue = data[1];
-              const gender_fem = data[0];
-              const gender_mas = data[1];
+              const genderFemale = data[0];
+              const genderMasculine = data[1];
 
               let nameAge = age.name;
               let nameAge1 = ageValue.name;
 
-              let genderName = gender_fem.name;
-              let genderName1 = gender_mas.name;
+              let genderName = genderFemale.name;
+              let genderName1 = genderMasculine.name;
 
               let valueAge = age.value.toFixed(3);
               let valueAge1 = ageValue.value.toFixed(3);
-              let genderValue = gender_fem.value.toFixed(3);
-              let genderValue1 = gender_mas.value.toFixed(3);
+              let genderValue = genderFemale.value.toFixed(3);
+              let genderValue1 = genderMasculine.value.toFixed(3);
 
               let nameMulti = result.map(e => e.name);
               let valueMulti = result.map(e => e.value.toFixed(3));
